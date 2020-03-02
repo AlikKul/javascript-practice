@@ -1,7 +1,7 @@
 let fruits = [
-    {id: 1, title: 'Яблоки', price: 20, img: 'https://lh3.googleusercontent.com/proxy/-p87EWY6zV-2bC8dOlEnYpbDHlcAiUf1XEE39vo0Jz5D4uEryyvgNnLaE_tc2-gUD4TtSeoVl-FsoCkF6J6L0IIQCTccaXPU8A8IBSHXaUUonaurxRKuYBcxva-oPHJm_3T5uaDD_HbOlGmg7t2HIQ'},
+    {id: 1, title: 'Яблоки', price: 20, img: 'https://ivan-pole.ru/wa-data/public/shop/products/67/07/767/images/2103/2103.256x256.jpg'},
     {id: 2, title: 'Апельсины', price: 15, img: 'https://www.gepardtop.ru/published/publicdata/GEPARDTURUPURPL/attachments/SC/products_pictures/1002_9d673.256.jpg'},
-    {id: 3, title: 'Манго', price: 10, img: 'https://lh3.googleusercontent.com/proxy/WXl7ZjDW4lWNv4M1-BzYlO9piIX1vasXEM-CwG1RwzEKhu6yMi5O7otevhQ5QYqEWBNn6Wgtl0WCjtsFNuJ_dH7xW2sBZ-DJ-dJ43_YKkOL3JZc9YoWhh8cjwd5Kb4ICFb9rELaIoKc5Das'}
+    {id: 3, title: 'Манго', price: 10, img: 'https://www.imwalrussoaps.com/uploads/4/7/6/8/47689877/s471809434186068050_p40_i2_w256.jpeg'}
 ];
 
 $.fruitsList = function(fruits) {
@@ -40,6 +40,9 @@ showPriceBtns.forEach((btn, indx) => {
             title: 'Цена',
             content: `Цена на ${fruits.find(fruit => fruit.id === indx + 1).title}: ${fruits.find(fruit => fruit.id === indx + 1).price} р.`,
             closable: true,
+            onClose() {
+                modalConfirm.destroy();
+            },
             footerButtons: [
                 {
                     text: 'OK', type: 'pimary', handler() {
@@ -57,9 +60,12 @@ deleteBtns.forEach((btn, indx) => {
     btn.addEventListener('click', () => {
         let modalConfirm = $.modal({
             title: 'Подтверждение',
-            content: `Удалить ${fruits.find(fruit => fruit.id === indx + 1).title}?`,
+            content: `Удалить ${fruits.find(fruit => fruit.id === indx + 1).title} ?`,
             closable: false,
             width: '300px',
+            onClose() {
+                modalConfirm.destroy();
+            },
             footerButtons: [
                 {
                     text: 'Да', type: 'danger', handler() {
@@ -78,56 +84,3 @@ deleteBtns.forEach((btn, indx) => {
         modalConfirm.open();
     });
 });
-
-// let del = false;
-// knpk.addEventListener('click', () => {
-//     let promise = new Promise((resolve, reject) => {
-//         let modalConfirm = $.modal({
-//             title: 'Подтверждение',
-//             content: 'Удалить?',
-//             closable: false,
-//             width: '300px',
-//             footerButtons: [
-//                 {
-//                     text: 'Да', type: 'danger', handler() {
-//                         del = true;
-//                         modalConfirm.close();
-//                         resolve(del);
-//                     }
-//                 },
-//                 {
-//                     text: 'Нет', type: 'primary', handler() {
-//                         del = false;
-//                         modalConfirm.close();
-//                         resolve(del);
-//                     }
-//                 }
-//             ]
-//         });
-//         modalConfirm.open();
-//     });
-//     promise.then(del => {
-//         console.log(del);
-//     })
-// })
-
-
-
-
-
-// let modalWin = $.modal({
-//     title: 'Awsome title!',
-//     content: 'Awsome content!!!',
-//     closable: true,
-//     width: '300px',
-//     footerButtons: [
-//         { text: 'OK', type: 'primary', handler() {
-//             console.log('OK button clicked');
-//             }
-//         },
-//         { text: 'Cancel', type: 'danger', handler() {
-//             console.log('Cansecl button clicked');
-//             }
-//         }
-//     ]
-// });
